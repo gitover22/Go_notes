@@ -1,15 +1,18 @@
 package main
 
-import (
-	"fmt"
-	"math"
-	"math/rand"
-	"time"
-)
+import "fmt"
 
+/**
+* @brief mutil return values func test
+*
+ */
+
+func swap(x, y string) (string, string) {
+	return y, x
+}
 func main() {
-	rand.Seed(time.Now().UnixNano()) // 播种
-	fmt.Printf("%s\n", "string output")
-	fmt.Println("random:", rand.Intn(100)) // 取随机数[0,100)
-	fmt.Println(math.Pi)                   // 大写字母开头的就是已导出的
+	x := "world"
+	y := "hello"
+	z, u := swap(x, y)
+	fmt.Printf("%s,%s", z, u)
 }
