@@ -3,16 +3,22 @@ package main
 import "fmt"
 
 func main() {
-	// 创建长度为10的数组
-	var a [10]int
-	for i := 0; i < 10; i++ {
-		a[i] = i + 1
+	names := [5]string{
+		"111",
+		"222",
+		"333",
+		"444",
+		"555",
 	}
-	fmt.Println(a)
-	// 创建的同时初试化
-	prime := [5]int{5, 4, 3, 2, 1}
-	fmt.Println(prime)
-	// slices
-	var aa []int = a[5:10]
-	fmt.Println(aa)
+	fmt.Println(names)
+	var ss []string = names[0:2]
+	var bb []string = names[1:3]
+	fmt.Println(ss)
+	fmt.Println(bb)
+
+	ss[1] = "666" // 通过切片修改值，会影响原值
+	fmt.Println("after change")
+	fmt.Println(ss)
+	fmt.Println(bb)
+	fmt.Println(names)
 }
