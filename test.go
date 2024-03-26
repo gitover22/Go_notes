@@ -6,9 +6,11 @@ import "fmt"
 *
 *
  */
-var c, python, java bool // 默认为flase
+var i, j int = 2, 3
 
+// k := 3 函数外不能这样使用，必须使用var func
 func main() {
-	var i int // 默认为0
-	fmt.Println(i, c, python, java)
+	var c, python, java = true, false, "string" // 默认为flase
+	k := "fsdaf"
+	fmt.Println(i, j, c, python, java, k)
 }
