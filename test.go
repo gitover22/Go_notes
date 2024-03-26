@@ -1,22 +1,26 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 func main() {
-	a := make([]int, 5)
-	printSlice("a", a) // a 5 5 [0,0,0,0,0]
+	// 创建一个井字板（经典游戏）
+	board := [][]string{
+		[]string{"_", "_", "_"},
+		[]string{"_", "_", "_"},
+		[]string{"_", "_", "_"},
+	}
 
-	b := make([]int, 0, 5)
-	printSlice("b", b) // b 0 5 []
-
-	c := b[:2]
-	printSlice("c", c) // c 2 5 [0,0]
-
-	d := c[2:5]
-	printSlice("d", d) // d 3 3 [0,0,0]
-}
-
-func printSlice(s string, x []int) {
-	fmt.Printf("%s len=%d cap=%d %v\n",
-		s, len(x), cap(x), x)
+	// 两个玩家轮流打上 X 和 O
+	board[0][0] = "X"
+	board[2][2] = "O"
+	board[1][2] = "X"
+	board[1][0] = "O"
+	board[0][2] = "X"
+	fmt.Println(board[0])
+	for i := 0; i < len(board); i++ {
+		fmt.Printf("%s\n", strings.Join(board[i], " "))
+	}
 }
