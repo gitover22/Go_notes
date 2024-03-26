@@ -2,43 +2,24 @@ package main
 
 import (
 	"fmt"
-	"math"
 )
 
-type Abser interface {
-	Abs() float64
+type I interface {
+	M() // 接口包含的方法
+}
+
+// 类型T
+type T struct {
+	S string
+}
+
+// 类型只要实现了一个接口的全部方法就说明实现了该接口
+// 此方法表示类型 T 实现了接口 I，但我们无需显式声明此事。
+func (t T) M() {
+	fmt.Println(t.S)
 }
 
 func main() {
-	var a Abser // 定义一个接口变量，只要实现了该接口的，就可以赋值
-	f := MyFloat(-math.Sqrt2)
-	v := Vertex{3, 4}
-
-	a = f  // a MyFloat 实现了 Abser
-	a = &v // a *Vertex 实现了 Abser
-
-	// 下面一行，v 是一个 Vertex（而不是 *Vertex）
-	// 所以没有实现 Abser。
-	// a = v
-
-	fmt.Println(a.Abs())
-}
-
-type MyFloat float64
-
-// MyFloat 实现了 Abser接口
-func (f MyFloat) Abs() float64 {
-	if f < 0 {
-		return float64(-f)
-	}
-	return float64(f)
-}
-
-type Vertex struct {
-	X, Y float64
-}
-
-// *Vertex 实现了 Abser接口
-func (v *Vertex) Abs() float64 {
-	return math.Sqrt(v.X*v.X + v.Y*v.Y)
+	var i I = T{"hello"} // 因为T类型实现了该接口，所以可以这样直接赋值
+	i.M()
 }
