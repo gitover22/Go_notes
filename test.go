@@ -3,9 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	sum := 1
-	for sum < 100 {
-		sum += sum
+	for {
+		fmt.Println("无限循环\n")
 	}
-	fmt.Println(sum)
 }
