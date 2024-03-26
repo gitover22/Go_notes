@@ -2,13 +2,21 @@ package main
 
 import "fmt"
 
-const PI = 3.1415
-const i = 3
+// 一个未指定类型的常量由上下文来决定其类型
+const (
+	Big   = 1 << 100
+	Small = Big >> 99
+)
 
+func needInt(x int) int {
+	return x*10 + 1
+}
+func needFloat(x float64) float64 {
+	return x * 0.1
+}
 func main() {
-	const ss = "const string"
-	const f = 3.23
-	fmt.Printf("type: %T,  %T, %T, %T\n", PI, i, ss, f)
-	fmt.Println("hello", PI)
-	fmt.Println("hello", ss)
+	fmt.Println(needInt(Small))
+	fmt.Println(needFloat(Small))
+	fmt.Println(needFloat(Big))
+	// fmt.Println(needInt(Big)) 报错，Big大于int能表示的最大数
 }
