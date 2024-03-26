@@ -4,21 +4,20 @@ import (
 	"fmt"
 )
 
-// 闭包的用法示例
-func adder() func(int) int {
-	sum := 0
-	return func(x int) int {
-		sum += x
-		return sum
-	} // 闭包，sum不会摧毁，会一直维护
+// 返回一个“返回int的函数”
+func fibonacci() func() int {
+	a, b := 0, 1 // 斐波那契数列的前两个数
+	return func() int {
+		// 计算下一个斐波那契数
+		next := a
+		a, b = b, a+b
+		return next
+	}
 }
 
 func main() {
-	pos, neg := adder(), adder()
+	f := fibonacci()
 	for i := 0; i < 10; i++ {
-		fmt.Println(
-			pos(i),
-			neg(-2*i),
-		)
+		fmt.Println(f())
 	}
 }
