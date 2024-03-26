@@ -9,11 +9,13 @@ type Vertex struct {
 	X, Y float64
 }
 
-func (v Vertex) Abs() float64 {
-	return math.Sqrt(v.X*v.X + v.Y*v.Y)
-}
-
+func (y Vertex) Abs() float64 {
+	return math.Sqrt(y.X*y.X + y.Y*y.Y)
+} // 结构体的函数
+func Abs(x Vertex) float64 {
+	return math.Sqrt(x.X*x.X + x.Y*x.Y)
+} // 普通函数
 func main() {
-	v := Vertex{3, 4}
-	fmt.Println(v.Abs())
+	fsdada := Vertex{3, 4}
+	fmt.Println(fsdada.Abs(), Abs(fsdada))
 }
