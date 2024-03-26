@@ -1,20 +1,21 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
-type Person struct {
-	Name string
-	Age  int
+type IPAddr [4]byte //一维数组，含四个元素
+
+// TODO: 给 IPAddr 添加一个 "String() string" 方法
+func (i IPAddr) String() string {
+	return fmt.Sprintf("%d.%d.%d.%d", i[0], i[1], i[2], i[3])
 }
-
-func (p Person) String() string {
-	fmt.Println("String")
-	return fmt.Sprintf("%v (%v years)", p.Name, p.Age)
-}
-
 func main() {
-	a := Person{"Arthur Dent", 42}
-	z := Person{"Zaphod Beeblebrox", 9001}
-	// fmt.Println(a.String())
-	fmt.Println(a, z)
+	hosts := map[string]IPAddr{
+		"loopback":  {127, 0, 0, 1},
+		"googleDNS": {8, 8, 8, 8},
+	}
+	for name, ip := range hosts {
+		fmt.Printf("%v: %v\n", name, ip)
+	}
 }
