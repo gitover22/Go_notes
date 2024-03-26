@@ -2,25 +2,25 @@ package main
 
 import (
 	"fmt"
-	"strings"
 )
 
 func main() {
-	// 创建一个井字板（经典游戏）
-	board := [][]string{
-		[]string{"_", "_", "_"},
-		[]string{"_", "_", "_"},
-		[]string{"_", "_", "_"},
-	}
+	var s []int
+	printSlice(s)
 
-	// 两个玩家轮流打上 X 和 O
-	board[0][0] = "X"
-	board[2][2] = "O"
-	board[1][2] = "X"
-	board[1][0] = "O"
-	board[0][2] = "X"
-	fmt.Println(board[0])
-	for i := 0; i < len(board); i++ {
-		fmt.Printf("%s\n", strings.Join(board[i], " "))
-	}
+	// 添加一个空切片
+	s = append(s, 0)
+	printSlice(s)
+
+	// 这个切片会按需增长
+	s = append(s, 1)
+	printSlice(s)
+
+	// 可以一次性添加多个元素
+	s = append(s, 2, 3, 4)
+	printSlice(s)
+}
+
+func printSlice(s []int) {
+	fmt.Printf("len=%d cap=%d %v\n", len(s), cap(s), s)
 }
