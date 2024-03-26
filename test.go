@@ -3,14 +3,8 @@ package main
 import "fmt"
 
 func main() {
-	names := []string{"zou", "gan"}
-	fmt.Println(names)
-	s := []struct {
-		x int
-		y bool
-	}{
-		{1, true},
-		{0, false},
-	}
-	fmt.Println(s)
+	// 切片默认为从0到尾
+	num := []int{1, 2, 3, 4, 5}
+	aa := num[:]
+	fmt.Println(aa)
 }
