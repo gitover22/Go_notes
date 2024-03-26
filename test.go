@@ -5,17 +5,18 @@ import (
 	"math"
 )
 
-type Vertex struct {
-	X, Y float64
+type MyFloat float64
+
+func (f MyFloat) Abs() float64 {
+	if f < 0 {
+		return float64(-f)
+	}
+	return float64(f)
 }
 
-func (y Vertex) Abs() float64 {
-	return math.Sqrt(y.X*y.X + y.Y*y.Y)
-} // 结构体的函数
-func Abs(x Vertex) float64 {
-	return math.Sqrt(x.X*x.X + x.Y*x.Y)
-} // 普通函数
 func main() {
-	fsdada := Vertex{3, 4}
-	fmt.Println(fsdada.Abs(), Abs(fsdada))
+	fmt.Println(math.Sqrt2)
+	f := MyFloat(-math.Sqrt2)
+	fmt.Println(f)
+	fmt.Println(f.Abs())
 }
