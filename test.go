@@ -4,35 +4,17 @@ import (
 	"fmt"
 )
 
-type I interface {
-	M()
-}
-
-type T struct {
-	S string
-}
-
-func (t *T) M() {
-	if t == nil {
-		fmt.Println("<nil>")
-		return
-	}
-	fmt.Println(t.S)
-}
-
 func main() {
-	var i I
-
-	var t *T
-	i = t
+	var i interface{}
 	describe(i)
-	i.M()
-
-	i = &T{"hello"}
+	// 空接口可保存任何类型的值
+	i = 42
 	describe(i)
-	i.M()
+
+	i = "hello"
+	describe(i)
 }
 
-func describe(i I) {
+func describe(i interface{}) {
 	fmt.Printf("(%v, %T)\n", i, i)
 }
