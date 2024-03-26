@@ -2,20 +2,28 @@ package main
 
 import (
 	"fmt"
+	"time"
 )
 
-type IPAddr [4]byte //一维数组，含四个元素
-
-// TODO: 给 IPAddr 添加一个 "String() string" 方法
-func (i IPAddr) String() string {
-	return fmt.Sprintf("%d.%d.%d.%d", i[0], i[1], i[2], i[3])
+type MyError struct {
+	When time.Time
+	What string
 }
-func main() {
-	hosts := map[string]IPAddr{
-		"loopback":  {127, 0, 0, 1},
-		"googleDNS": {8, 8, 8, 8},
+
+func (e *MyError) Error() string {
+	return fmt.Sprintf("at %v, %s",
+		e.When, e.What)
+}
+
+func run() error {
+	return &MyError{
+		time.Now(),
+		"it didn't work",
 	}
-	for name, ip := range hosts {
-		fmt.Printf("%v: %v\n", name, ip)
+}
+
+func main() {
+	if err := run(); err != nil {
+		fmt.Println(err)
 	}
 }
