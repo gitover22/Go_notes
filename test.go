@@ -2,18 +2,17 @@ package main
 
 import "fmt"
 
-type Veee struct {
-	X int
-	Y int
-	Z *int
-}
-
 func main() {
-	v := Veee{}
-	v.X = 5
-	v.Y = 8
-	v.Z = &v.X
-	fmt.Println(v.X)
-	fmt.Println(v.Y)
-	fmt.Println(*v.Z)
+	// 创建长度为10的数组
+	var a [10]int
+	for i := 0; i < 10; i++ {
+		a[i] = i + 1
+	}
+	fmt.Println(a)
+	// 创建的同时初试化
+	prime := [5]int{5, 4, 3, 2, 1}
+	fmt.Println(prime)
+	// slices
+	var aa []int = a[5:10]
+	fmt.Println(aa)
 }
