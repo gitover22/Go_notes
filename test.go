@@ -10,7 +10,7 @@ func adder() func(int) int {
 	return func(x int) int {
 		sum += x
 		return sum
-	}
+	} // 闭包，sum不会摧毁，会一直维护
 }
 
 func main() {
