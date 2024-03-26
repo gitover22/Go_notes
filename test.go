@@ -2,13 +2,13 @@ package main
 
 import "fmt"
 
+const PI = 3.1415
+const i = 3
+
 func main() {
-	// 自动类型推导
-	i := 10
-	f := 3.1415926
-	c := 1 + 2i
-	t := false
-	// 显示说明
-	var ii int = 12
-	fmt.Printf("type: %T,  %T, %T, %T,%T\n", i, f, c, t, ii)
+	const ss = "const string"
+	const f = 3.23
+	fmt.Printf("type: %T,  %T, %T, %T\n", PI, i, ss, f)
+	fmt.Println("hello", PI)
+	fmt.Println("hello", ss)
 }
