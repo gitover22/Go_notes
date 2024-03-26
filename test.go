@@ -1,9 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
-func main() {
-	for {
-		fmt.Println("无限循环\n")
+func sqrt(x float64) string {
+	if x < 0 {
+		return sqrt(-x) + ""
 	}
+	return fmt.Sprint(math.Sqrt(x))
+}
+func main() {
+	fmt.Println(sqrt(9), sqrt(-4))
 }
