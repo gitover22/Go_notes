@@ -2,8 +2,10 @@ package main
 
 import (
 	"fmt"
+	"math"
 )
 
+// 定义接口 I
 type I interface {
 	M() // 接口包含的方法
 }
@@ -13,13 +15,31 @@ type T struct {
 	S string
 }
 
-// 类型只要实现了一个接口的全部方法就说明实现了该接口
-// 此方法表示类型 T 实现了接口 I，但我们无需显式声明此事。
-func (t T) M() {
+// 类型T的指针型方法M
+func (t *T) M() {
 	fmt.Println(t.S)
 }
 
+// 类型F
+type F float64
+
+// 类型F的值类型方法M
+func (f F) M() {
+	fmt.Println(f)
+}
+
 func main() {
-	var i I = T{"hello"} // 因为T类型实现了该接口，所以可以这样直接赋值
+	var i I
+
+	i = &T{"Hello"}
+	describe(i)
 	i.M()
+
+	i = F(math.Pi)
+	describe(i)
+	i.M()
+}
+
+func describe(i I) {
+	fmt.Printf("(%v, %T)\n", i, i)
 }
