@@ -1,21 +1,22 @@
 package main
 
-import (
-	"fmt"
-	"io"
-	"strings"
-)
+import "fmt"
+
+func sum(s []int, c chan int) {
+	sum := 0
+	for _, v := range s {
+		sum += v
+	}
+	c <- sum // 将和送入 c
+}
 
 func main() {
-	r := strings.NewReader("Hello, Reader!")
+	s := []int{7, 2, 8, -9, 4, 0}
 
-	b := make([]byte, 8) // b为数组切片，len为8，cap为8
-	for {
-		n, err := r.Read(b) //填充b，并返回填充的字节数和错误值
-		fmt.Printf("n = %v err = %v b = %v\n", n, err, b)
-		fmt.Printf("b[:n] = %q\n", b[:n])
-		if err == io.EOF { // 遇到结尾，返回EOF
-			break
-		}
-	}
+	c := make(chan int) //信道必须要先创建
+	go sum(s[:len(s)/2], c)
+	go sum(s[len(s)/2:], c)
+	x, y := <-c, <-c // 从 c 中接收
+
+	fmt.Println(x, y, x+y)
 }
